@@ -1,7 +1,7 @@
 '''
 Author: Suraj N Temkar.
 Date: 06/04/2021
-Title: Demo of the Types of the Python Variables
+Title: Demo of the Python Variables And Data Types
 '''
 
 a_122 = '''Suraj'''
