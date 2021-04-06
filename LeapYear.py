@@ -1,3 +1,9 @@
+'''
+Author: Suraj N Temkar.
+Date: 05/04/2021
+Title: Check year is Leap Year or Not.
+'''
+
 year = int(input("Enter 4-digit year: "))
 isLeap = False
 

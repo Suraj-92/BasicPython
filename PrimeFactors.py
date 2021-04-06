@@ -1,3 +1,9 @@
+'''
+Author: Suraj N Temkar.
+Date: 05/04/2021
+Title: Computes the prime factorization of N using brute force.
+'''
+
 def prime_fact(x):
     prime_factors = []
     divisor = 2
