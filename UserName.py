@@ -1,3 +1,9 @@
+'''
+Author: Suraj N Temkar.
+Date: 05/04/2021
+Title: User Input and Replace String Template “Hello <<UserName>>, How are you?”
+'''
+
 username = input("Enter the Username: ")
 a = len(username)
 
