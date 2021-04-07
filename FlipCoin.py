@@ -4,10 +4,11 @@ Date: 05/04/2021
 Title: Flip Coin and print percentage of Heads and Tails
 '''
 
-from random import randint
+from random import randint #import random library
 from time import sleep
 
-def coinFlip():
+# function define
+def coinFlip(flip):
     heads = 0
     tails = 0
     try:
@@ -28,9 +29,12 @@ def coinFlip():
     except Exception as e:
         print("Exception is ++++++++++", e)
     
+# Main Function
 if __name__ == '__main__':
     try:
-        flip = int(input("How many coin tosses are you going to do?: "))
+        flip1 = int(input("How many coin tosses are you going to do?: "))
+        coinFlip(flip1)
+
     except Exception as e:
         print(f"Exception Occurs: {e} Please Enter Number !!!! ")
-    coinFlip()
+   
