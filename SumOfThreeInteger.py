@@ -1,7 +1,7 @@
 ''' 
 Author: Suraj N Temkar.
 Date: 07/04/2021
-Title: A program with cubic running time. Read in N integers and counts the   number of triples that sum to exactly 0.
+Title: A program with cubic running time. Read in N integers and counts the number of triples that sum to exactly 0.
 '''
 
 def sumOfThree(arr):
