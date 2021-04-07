@@ -4,7 +4,8 @@ Date: 05/04/2021
 Title: Check year is Leap Year or Not.
 '''
 
-def leapYear():
+#Function Definition
+def leapYear(year):
     try:
         isLeap = False
         if(year%4 == 0):
@@ -25,9 +26,10 @@ def leapYear():
     except Exception as e:
         print("Exception is: ", e)
 
+# main Method
 if __name__ == '__main__':
     try:
-        year = int(input("Enter 4-digit year: "))
+        year1 = int(input("Enter 4-digit year: "))   # User Input
+        leapYear(year1)              # Function Call
     except Exception as e:
         print(f"Exception occurs.....{e}.....Please enter 4-Digit Number")
-    leapYear()
