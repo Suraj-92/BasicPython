@@ -4,8 +4,9 @@ Date: 07/04/2021
 Title: A program with cubic running time. Read in N integers and counts the number of triples that sum to exactly 0.
 '''
 
+# Function Definition
 def sumOfThree(arr):
-    a = len(arr)
+    a = len(arr)  # Array Length
     for i in range(0, a):
         firstnumber = arr[i]
         for j in range(i+1, a):
@@ -17,7 +18,8 @@ def sumOfThree(arr):
                 if(sum == 0):
                     print(f"{firstnumber}, {secondnumber}, {thirdnumber}")
 
-arr = [3, -1, -7, -4, -5, 9, -4]
-function = sumOfThree(arr)
-print(function)
-                
+# Main Function
+if __name__ == '__main__':
+    arr1 = [3, -1, -7, -4, -5, 9, -4]  # Input
+    function = sumOfThree(arr1)
+    print(function)     # Function Call
