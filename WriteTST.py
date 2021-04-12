@@ -4,12 +4,12 @@ Date: 12/04/2021
 Title: File IO (Write The File)
 '''
 
-f = open("C:\\Users\\DELL\\Desktop\\Python\\FileIO\File1.txt", "a")
+f = open("File1.txt", "a")
 f.write("Now the file has more content!")
 f.close()
 
 #open and read the file after the appending
-f = open("C:\\Users\\DELL\\Desktop\\Python\\FileIO\File1.txt", "r")
+f = open("File1.txt", "r")
 print(f.read())
 
 
