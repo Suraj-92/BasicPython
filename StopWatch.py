@@ -4,27 +4,30 @@ Date: 11/04/2021
 Title: Write a Stopwatch Program for measuring the time that elapses between the start and end 
 '''
 
-import time  # Import Time Library
+class StopWatch:
+    def get_ElapsedTime(self):
+        """
+            Description:Simulates the stopwatch
+            :parameter: None
+            :return: This function will return elapsed time
+        """
+        start = input("Press Enter a number  to start timer: ")  # starts the timer
+        begin = time.time()
+        stop = input("Press Enter to a number stops timer: ")  # stops the timer
+        end = time.time()  # gets the time when user press enter
+        elapsed = end - begin  # difference between timer started and user press enter
+        elapsed = round(elapsed, 2)
 
-# User Defined Function For StopWatch    
-def stopWatch():
-    second = 0    
-    minute = 0   
-    hours = 0
-    while(True):
-        print("------STOPWATCH------")     
-        print('=============')    
-        print(f"{hours} : {minute} : {second}")
-        print('=============')    
-        time.sleep(1)    
-        second+=1    
-        if(second == 60):    
-            second = 0    
-            minute+=1    
-        if(minute == 60):    
-            minute = 0    
-            hours+=1   
+        return elapsed
 
-# Main Function
+
 if __name__ == '__main__':
-    stopWatch() 
+    while True:
+        try:                                # throws exception if occurs
+            timer = StopWatch()
+            elapse_Time = timer.get_ElapsedTime()     # called stopwatch function
+            print("Elapsed time is ", elapse_Time, "seconds")
+            break
+        except Exception:                       # catches exception if throws
+            print("enter valid number")
+            continue
