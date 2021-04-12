@@ -10,7 +10,7 @@ import logging      # import logging library
 
 logger = logging.getLogger(__name__)
 
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG) 		# Debug level
 
 formater = logging.Formatter('%(levelname)s : %(message)s')
 
