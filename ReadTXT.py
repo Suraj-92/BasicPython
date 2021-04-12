@@ -4,7 +4,7 @@ Date: 12/04/2021
 Title: File IO (Read The File)
 '''
 
-f = open("C:\\Users\\DELL\\Desktop\\Python\\FileIO\File1.txt", "r")
+f = open("File1.txt", "r")
 # print(f.read())   # Read File Contents
 
 # print(f.read(5))    # Reads Only Parts of file
