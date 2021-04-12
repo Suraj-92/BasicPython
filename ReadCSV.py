@@ -6,7 +6,7 @@ Title: CSV (Read CSV File)
 
 import csv
 
-with open('C:\\Users\\DELL\\Desktop\\Python\\FileIO\csv1.txt') as csv_file:
+with open('csv1.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
