@@ -6,45 +6,35 @@ Title: Given N distinct Coupon Numbers, how many random numbers do you need to g
 '''
 
 
-import random		# Import Library
+import random
 
-# User-Defined Function
-def AddCouponNumber():
-    try:
-        couponSet = set() 		# Set Data-structure 
-        condition = True
 
-        while condition == True:
-            userCoupon = int(input('Enter distinct numbers: '))			# User Input
-            couponSet.add(userCoupon)
-            print('Number added: ', userCoupon)
-            anotherNumber = input('Add Another Number Enter y/Y, or enter any other key to stop: ')
-            if anotherNumber == 'y' or anotherNumber == 'Y':
-                condition = True
-            else:
-                condition = False
+class Coupons:
+    def logic(self, number):
 
-        sortedUserCoupon = sorted(couponSet)
-        firstElement = sortedUserCoupon[0]
-        lastElement = sortedUserCoupon[len(sortedUserCoupon) - 1]
-        Coupons = set()
-        condition2 = True
-        while condition2 == True:
-            randomCoupan = random.randint(firstElement,lastElement)			# Random Number Generated
-            print('generated coupon: ', randomCoupan)
+        total_Coupons = []
 
-            Coupons.add(randomCoupan)
-            generateAnotherCoupon=input('Enter y/Y to generate another coupon, or press any other key to see all generated coupons: ')
-            if generateAnotherCoupon=='y' or generateAnotherCoupon=='Y':
-                condition2=True
-            else:
-                condition2=False
+        for i in range(number):
+            random_number = random.randint(10, 100)
+            total_Coupons.append(random_number)
 
-        print('Coupon set is:',Coupons)		# Print the result
+            unique_Coupons = set(total_Coupons)
+            coupons = list(unique_Coupons)
+        return coupons
 
-    except Exception as e:
-        print(e)       
 
-# Main Function
 if __name__ == '__main__':
-    AddCouponNumber()		# Function Call
+    while True:  # exception blocks
+        try:
+            number_ofCoupons = int(input("Enter number of two digits coupons numbers:"))
+
+            if number_ofCoupons < 10 or number_ofCoupons > 500:
+                print("Please enter between 10 and 500 ")
+                continue
+            coupon_Obj = Coupons()
+            distinct_Coupons = coupon_Obj.logic(number_ofCoupons)
+            print(distinct_Coupons)
+            break
+        except Exception:
+            print("Enter valid input")
+            continue

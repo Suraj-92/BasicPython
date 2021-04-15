@@ -1,153 +1,88 @@
 '''
 Author: Suraj N Temkar
-Date: 09/04/2021
+Date: 14/04/2021
 Title: -> Write a Program to play a Cross Game or Tic-Tac-Toe Game. 
             Player 1 is the Computer and the Player 2 is the user. Player 1 take Random Cell that is the Column and Row. 
 '''
 
-print(20*' ',"   reference:    ")
-print(20*' ','     |    |      ') 
-print(20*' ','  1  | 2  | 3    ')
-print(20*' ',"-----+----+----- ")
-print(20*' ',"     |    |      ")
-print(20*' ',"  4  | 5  | 6    ")
-print(20*' ',"-----+----+----- ")
-print(20*' ',"     |    |      ")
-print(20*' ',"  7  | 8  | 9    \n")
+import random
 
-def display_board():
-    print()
-    print('                               reference:')
-    print('     |    |     ',10*' ','     |    |   ',)
-    print('  '+board[1]+'  | '+board[2]+'  | '+board[3]+'   ',10*' ','  1  | 2  | 3  ')
-    print('-----+----+-----',10*' ',"-----+----+-----")
-    print('     |    |     ',10*' ',"     |    |     ")
-    print('  '+board[4]+'  | '+board[5]+'  | '+board[6]+'   ',10*' ',"  4  | 5  | 6   ")
-    print('-----+----+-----',10*' ',"-----+----+-----")
-    print('     |    |     ',10*' ',"     |    |      ")
-    print('  '+board[7]+'  | '+board[8]+'  | '+board[9]+'   ',10*' ',"  7  | 8  | 9    \n\n")
-    
+boxes = [ ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ]
+Human = 'X'
+Computer = 'O'
+first_player = Human
+turn = 1
+winning_turns = [ [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                  [0, 4, 8], [2, 4, 6] ]
 
-def human_input(mark):
+def print_board(initial=False):
+    print(('''
+                {} | {} | {}
+               -----------
+                {} | {} | {}
+               -----------
+                {} | {} | {}
+        ''').format(*([x for x in range(1, 10)] if initial else boxes)))
+
+def take_turn(player, turn):
     while True:
-        inp = input(f"[HUMAN] '{mark}' Enter your choice:")
-        if inp.isdigit() and int(inp) <10 and int(inp) >0:
-            inp = int(inp)
-            if board[inp] == " ":
-                return inp
-            else:
-                print(f"[HUMAN] '{mark}' place already taken.")
+        if player is Computer:
+            box = Computer_move()
         else:
-            print(f"[HUMAN] '{mark}' Enter valid option (1 - 9).")
+            box = input(f'Player {player}, type a number from 1-9 to select a box {player} : ')
 
+            try:
+                box = int(box) - 1
+            except ValueError:
+                print("Enter Valid Number....")
+                continue
 
-def winning(mark,board):
-    winning_place = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
-    for win_place in winning_place:
-        if board[win_place[0]] == board[win_place[1]] == board[win_place[2]] == mark:
-            return True
-
-
-def win_move(i,board,mark):
-    temp_board = list(board)
-    temp_board[i] = mark
-    if winning(mark,temp_board):
-        return True
-    else:
-        return False
-
-
-def cpu_input(cpu , human , board):
-    for i in range(1,10):
-        if board[i] == ' ' and win_move(i,board,cpu):
-            return i
-    for i in range(1,10):
-        if board[i] == ' ' and win_move(i,board,human):
-            return i
-    for i in [5,1,7,3,2,9,8,6,4]:
-        if board[i] == ' ':
-            return i
-
-def new_game():
-    while True:
-        nxt = input('[HUMAN] Do you want to play again?(y/n):')
-        if nxt in['y','Y']:
-            again = True
-            break
-        elif nxt in ['n','N']:
-            print('Have a great day')
-            again = False
+        if box < 0 or box > 8:
+            print("Number is Out Of Range, Please Enter Valid Number")
+            continue
+        if boxes[box] == ' ':
+            boxes[box] = player
             break
         else:
-            print('Enter correct input')
-    if again:
-        print('__________NEW GAME__________')
-        main_game()
-    else:
-        return False
-
- 
-def win_check(human , cpu):
-    winning_place = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
-    for win_place in winning_place:
-        if board[win_place[0]] == board[win_place[1]] == board[win_place[2]] == human:
-            print('[HUMAN] wins the match!')
-            if not new_game():
-                return False
-        elif board[win_place[0]] == board[win_place[1]] == board[win_place[2]] == cpu:
-                print('[CPU] wins the match!')
-                if not new_game():
-                    return False
-    if ' ' not in board:
-        print('MATCH DRAW!!')
-        if not new_game():
-            return False
-    return True
+            print("Already Taken Please Enter Another Number...")
 
 
-def user_choice():
+def Computer_move():
+    return random.randint(0, 8)
+
+def check_win(player, turn):
+    if turn > 4:
+        for turns in winning_turns:
+            score = 0
+            for index in turns:
+                if boxes[index] == player:
+                    score += 1
+                if score == 3:
+                    return 'win'
+        if turn == 9:
+            return 'tie'
+
+def switch_player(turn):
+    current_player = Computer if turn % 2 == 0 else Human
+    return current_player
+
+def play(player, turn):
     while True:
-        inp = input('[HUMAN]Choose your mark[x/o]: ')
-        if inp in ['x' , 'X']:
-            print('[HUMAN]You choose "X".\n[HUMAN]You play first.')
-            return 'x','o'
-        elif inp in ['O','o']:
-            print('[HUMAN] You choose "O".\n[HUMAN] CPU plays first.')
-            return 'o','x'
-        else:
-            print('[HUMAN] Enter correct input!')
+        take_turn(player, turn)
+        print_board()
+        result = check_win(player, turn)
+        if result == 'win':
+            print(f"Game Over...{result} win.....\n {player}")
+            break
+        elif result == 'tie':
+            print(f"Game Over... Its Tie...\n")
+            break
+        turn += 1
+        player = switch_player(turn)
 
-
-def main_game():
-    global board
-    play = True
-    board =['',' ',' ',' ',' ',' ',' ',' ',' ',' ']
-    human , cpu = user_choice()
-    display_board()
-    while play:
-        if human == 'x':
-            x = human_input(human)
-            board[x] = human
-            display_board()
-            play = win_check(human , cpu)
-            if play:
-                o = cpu_input(cpu , human , board)
-                print(f'[CPU] Entered:{o}')
-                board[o] = cpu
-                display_board()
-                play = win_check(human , cpu)
-        else:
-            x = cpu_input(cpu , human , board)
-            print(f'[CPU] Entered:{x}')
-            board[x] = cpu
-            display_board()
-            play = win_check(human , cpu)
-            if play:
-                o = human_input(human)
-                board[o] = human
-                display_board()
-                play = win_check(human , cpu)
-
-           
+# Start The Game (Main Function)
 if __name__ == '__main__':
-    main_game()
+    print("\n Welcome To The Tic Tac Toe.....")
+    print_board(initial=True)
+    play(first_player, turn)
